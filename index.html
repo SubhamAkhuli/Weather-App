@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <!--     <meta http-equiv="refresh" content="30"> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/1779/1779940.png">
+  <title>Weather App</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body style="background: linear-gradient(to bottom right, rgb(56, 3, 248), rgb(244, 33, 40));"">
+    <nav class=" navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <img class="img-fluid" src="https://cdn-icons-png.flaticon.com/512/1779/1779940.png"
+      style="width: 70px;height: 70px;" alt="logo">
+    <a href="#" class="navbar-brand"><h1>Check Your Cities Weather Here</h1></a>
+    <form class="d-flex">
+      <input id="city" class="form-control me-2" type="search" placeholder="Enter City Name" aria-label="Search" />
+      <button class="btn btn-outline-success" type="submit" id="submit"><i class="fa fa-search"></i></button>
+    </form>
+  </div>
+  </nav>
+  <div class="container">
+    <h1 class="my-4 text-center" style="color: rgb(255, 255, 255)">Weather for <span id="cityName">Kolkata</span></h1>
+    <main>
+      <div class="row row-cols-1 row-cols-md-4 md-4 text-center">
+        <div class="col">
+          <div class="card mb-4 rounded-3 shadow-sm border-primary">
+            <div class="card-header py-3 text-white bg-primary border-primary">
+              <h4 class="my-0 fw-normal">Temperature</h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title pricing-card-title"><span id="temp"></span><small
+                  class="text-muted fw-light">&#8451;</small>
+              </h1>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card mb-4 rounded-3 shadow-sm border-primary">
+            <div class="card-header py-3 text-white bg-primary border-primary">
+              <h4 class="my-0 fw-normal">Wind Speed</h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title pricing-card-title">
+                <span id="wind_speed"></span><small class="text-muted fw-light">m/s</small>
+              </h1>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card mb-4 rounded-3 shadow-sm border-primary">
+            <div class="card-header py-3 text-white bg-primary border-primary">
+              <h4 class="my-0 fw-normal">Cloud PCT</h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title pricing-card-title">
+                <span id="cloud_pct"></span><small class="text-muted fw-light">%</small>
+              </h1>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card mb-4 rounded-3 shadow-sm border-primary">
+            <div class="card-header py-3 text-white bg-primary border-primary">
+              <h4 class="my-0 fw-normal">Humidity</h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title pricing-card-title">
+                <span id="humidity"></span><small class="text-muted fw-light">%</small>
+              </h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <div class="container">
+    <main>
+      <div class="row row-cols-1 row-cols-md-3 md-3 text-center">
+        <div class="col">
+          <div class="card mb-4 rounded-3 shadow-sm border-primary">
+            <div class="card-header py-3 text-white bg-primary border-primary">
+              <h4 class="my-0 fw-normal">Feels Like</h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title pricing-card-title">
+                <span id="feels_like"></span><small class="text-muted fw-light">&#8451;</small>
+              </h1>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card mb-4 rounded-3 shadow-sm border-primary">
+            <div class="card-header py-3 text-white bg-primary border-primary">
+              <h4 class="my-0 fw-normal">Max Temperature</h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title pricing-card-title"><span id="max_temp"></span><small
+                  class="text-muted fw-light">&#8451;</small>
+              </h1>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card mb-4 rounded-3 shadow-sm border-primary">
+            <div class="card-header py-3 text-white bg-primary border-primary">
+              <h4 class="my-0 fw-normal">Min Temperature</h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title pricing-card-title"><span id="min_temp"></span><small
+                  class="text-muted fw-light">&#8451;</small>
+              </h1>
+            </div>
+          </div>
+        </div>
+    </main>
+  </div>
+  <div class="container">
+    <main>
+      <div class="row row-cols-1 row-cols-md-3 md-3 text-center">
+        <div class="col">
+          <div class="card mb-4 rounded-3 shadow-sm border-primary">
+            <div class="card-header py-3 text-white bg-primary border-primary">
+              <h4 class="my-0 fw-normal">Wind Degrees</h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title pricing-card-title">
+                <span id="wind_degrees"></span><small class="text-muted fw-light">NE</small>
+              </h1>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card mb-4 rounded-3 shadow-sm border-primary">
+            <div class="card-header py-3 text-white bg-primary border-primary">
+              <h4 class="my-0 fw-normal">Sunrise</h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title pricing-card-title">
+                <span id="sunrise"></span><small class="text-muted fw-light">ms</small>
+              </h1>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card mb-4 rounded-3 shadow-sm border-primary">
+            <div class="card-header py-3 text-white bg-primary border-primary">
+              <h4 class="my-0 fw-normal">Sunset</h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title pricing-card-title">
+                <span id="sunset"></span><small class="text-muted fw-light">ms</small>
+              </h1>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  </main>
+  <div class="container">
+    <h2 class="display-6 text-center mb-4" style="color: rgb(255, 255, 255);">
+      <b>Weather of other common places</b>
+    </h2>
+
+    <div class="table-responsive">
+      <table class="table text-center">
+        <thead  style="color: rgb(239, 239, 24);">
+          <tr>
+            <th style="width: 34%"></th>
+            <th style="width: 22%">Cloud_pct</th>
+            <th style="width: 22%">Feels_like</th>
+            <th style="width: 22%">Humidity</th>
+            <th style="width: 22%">Max_temp</th>
+            <th style="width: 22%">Min_temp</th>
+            <th style="width: 22%">Sunrise</th>
+            <th style="width: 22%">Sunset</th>
+            <th style="width: 22%">Temp</th>
+            <th style="width: 22%">Wind_degrees</th>
+            <th style="width: 22%">Wind_speed</th>
+          </tr>
+        </thead>
+        <tbody style="color: rgb(239, 239, 24);">
+          <tr>
+            <th scope="row" class="text-start"> <span id="cityName1" style="color: rgb(239, 239, 24);">Kolkata</span></th>
+            <td><span id="cloud_pct1"></span></td>
+            <td><span id="feels_like1"></span></td>
+            <td><span id="humidity1"></span></td>
+            <td><span id="max_temp1"></span></td>
+            <td><span id="min_temp1"></span></td>
+            <td><span id="sunrise1"></span></td>
+            <td><span id="sunset1"></span></td>
+            <td><span id="temp1"></span></td>
+            <td><span id="wind_degrees1"></span></td>
+            <td><span id="wind_speed1"></span></td>
+          </tr>
+          <tr>
+            <th scope="row" class="text-start" style="color: rgb(239, 239, 24);">Mumbai</th>
+            <td><span id="cloud_pct2"></span></td>
+            <td><span id="feels_like2"></span></td>
+            <td><span id="humidity2"></span></td>
+            <td><span id="max_temp2"></span></td>
+            <td><span id="min_temp2"></span></td>
+            <td><span id="sunrise2"></span></td>
+            <td><span id="sunset2"></span></td>
+            <td><span id="temp2"></span></td>
+            <td><span id="wind_degrees2"></span></td>
+            <td><span id="wind_speed2"></span></td>
+          </tr>
+          <tr>
+            <th scope="row" class="text-start"style="color: rgb(239, 239, 24);">Delhi</th>
+            <td><span id="cloud_pct3"></span></td>
+            <td><span id="feels_like3"></span></td>
+            <td><span id="humidity3"></span></td>
+            <td><span id="max_temp3"></span></td>
+            <td><span id="min_temp3"></span></td>
+            <td><span id="sunrise3"></span></td>
+            <td><span id="sunset3"></span></td>
+            <td><span id="temp3"></span></td>
+            <td><span id="wind_degrees3"></span></td>
+            <td><span id="wind_speed3"></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    </main>
+  </div>
+  <div class="container">
+    <marquee behavior="scroll" direction="right">Thanks For Using This Web Site</marquee>
+  </div>
+  <nav class="navbar fixed-bottom navbar-dark bg-primary">
+    <div class="container-fluid">
+      <marquee behavior="scroll" direction="left"><b> Developed by Subham  Akhuli ------- Copyright © www.Weather App.com. All rights reserved!</b></marquee>
+    </div>
+  </nav>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <script>
+    const options = {
+      method: "GET",
+      headers: {
+        "X-RapidAPI-Key": "b3ac675d74msh84fbee447d6046fp175a55jsn727a4cb8a6cd",
+        "X-RapidAPI-Host": "weather-by-api-ninjas.p.rapidapi.com",
+      },
+    };
+
+    const getWeather = (city) => {
+      cityName.innerHTML = city
+      fetch(
+        "https://weather-by-api-ninjas.p.rapidapi.com/v1/weather?city=" + city,
+        options
+      )
+        .then((response) => response.json())
+        .then((response) => {
+          console.log(response);
+          cloud_pct.innerHTML = response.cloud_pct;
+          feels_like.innerHTML = response.feels_like;
+          humidity.innerHTML = response.humidity;
+          max_temp.innerHTML = response.max_temp;
+          min_temp.innerHTML = response.min_temp;
+          sunrise.innerHTML = response.sunrise;
+          sunset.innerHTML = response.sunset;
+          temp.innerHTML = response.temp;
+          wind_degrees.innerHTML = response.wind_degrees;
+          wind_speed.innerHTML = response.wind_speed;
+        })
+        .catch((err) => console.error(err));
+    }
+    submit.addEventListener("click", (e) => {
+      e.preventDefault()
+      getWeather(city.value)
+
+    })
+    getWeather("Kolkata");
+    fetch(
+      "https://weather-by-api-ninjas.p.rapidapi.com/v1/weather?city=kolkata",
+      options
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        console.log(response);
+        cloud_pct1.innerHTML = response.cloud_pct;
+        feels_like1.innerHTML = response.feels_like;
+        humidity1.innerHTML = response.humidity;
+        max_temp1.innerHTML = response.max_temp;
+        min_temp1.innerHTML = response.min_temp;
+        sunrise1.innerHTML = response.sunrise;
+        sunset1.innerHTML = response.sunset;
+        temp1.innerHTML = response.temp;
+        wind_degrees1.innerHTML = response.wind_degrees;
+        wind_speed1.innerHTML = response.wind_speed;
+      })
+      .catch((err) => console.error(err));
+    fetch(
+      "https://weather-by-api-ninjas.p.rapidapi.com/v1/weather?city=mumbai",
+      options
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        console.log(response);
+        cloud_pct2.innerHTML = response.cloud_pct;
+        feels_like2.innerHTML = response.feels_like;
+        humidity2.innerHTML = response.humidity;
+        max_temp2.innerHTML = response.max_temp;
+        min_temp2.innerHTML = response.min_temp;
+        sunrise2.innerHTML = response.sunrise;
+        sunset2.innerHTML = response.sunset;
+        temp2.innerHTML = response.temp;
+        wind_degrees2.innerHTML = response.wind_degrees;
+        wind_speed2.innerHTML = response.wind_speed;
+      })
+      .catch((err) => console.error(err));
+    fetch("https://weather-by-api-ninjas.p.rapidapi.com/v1/weather?city=delhi", options)
+      .then((response) => response.json())
+      .then((response) => {
+        console.log(response);
+        cloud_pct3.innerHTML = response.cloud_pct;
+        feels_like3.innerHTML = response.feels_like;
+        humidity3.innerHTML = response.humidity;
+        max_temp3.innerHTML = response.max_temp;
+        min_temp3.innerHTML = response.min_temp;
+        sunrise3.innerHTML = response.sunrise;
+        sunset3.innerHTML = response.sunset;
+        temp3.innerHTML = response.temp;
+        wind_degrees3.innerHTML = response.wind_degrees;
+        wind_speed3.innerHTML = response.wind_speed;
+      })
+      .catch((err) => console.error(err));
+  </script>
+</body>
+
+</html>
