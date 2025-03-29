@@ -1,5 +1,5 @@
 // Using WeatherStack API
-const apiKey = '0b9e5edfff1bed2879cdbce73f70c168'; // WeatherStack API key (free tier)
+const apiKey = '4d2f0c11ec5792e7788866e31e64d40a'; // WeatherStack API key (free tier)
 const loadingSpinner = document.getElementById('loadingSpinner');
 const apiErrorMessage = document.getElementById('apiErrorMessage');
 const CACHE_EXPIRY_TIME = 30 * 60 * 1000; // 30 minutes in milliseconds
@@ -119,7 +119,10 @@ const updateWeatherUI = (data) => {
     moonrise.innerHTML = data.current.astro.moonrise || "--";
     moonset.innerHTML = data.current.astro.moonset || "--";
     moon_phase.innerHTML = data.current.astro.moon_phase || "--";
-    moon_illumination.innerHTML = data.current.astro.moon_illumination || "--";
+    const moon_illumination = document.getElementById('moon_illumination')
+    if (moon_illumination) {
+      moon_illumination.textContent = data.current.astro.moon_illumination !== undefined ? data.current.astro.moon_illumination : "--";
+    }
   }
   
   // Air quality
